@@ -1,0 +1,418 @@
+@import url('https://fonts.cdnfonts.com/css/satoshi');
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	cursor: pointer;
+}
+
+:root {
+	--card-bg: rgba(161, 161, 165, 0.7);
+	--card-bg-hover: rgb(39, 39, 42, 0.6);
+	--text-hover: rgb(9, 9, 11, 0.5);
+	--text-dark-hover: rgba(39, 39, 42, 0.2);
+	--text-placeholder: rgb(9, 9, 11, 0.7);
+
+	--background: #e6e6e6;
+	--foreground: rgb(9, 9, 11);
+	--accent: rgb(39, 39, 42);
+	--text-accent: rgb(80, 80, 80);
+	--border: rgb(0, 0, 0, 0.3);
+	--radius: 1rem;
+}
+
+.dark {
+	--card-bg: rgb(39, 39, 42, 0.7);
+	--card-bg-hover: rgb(39, 39, 42, 0.5);
+	--text-hover: rgba(250, 250, 250, 0.5);
+	--text-dark-hover: rgba(39, 39, 42, 0.8);
+	--text-placeholder: rgb(250, 250, 250, 0.5);
+
+	--background: rgb(9, 9, 11);
+	--foreground: rgb(250, 250, 250);
+	--accent: rgb(39, 39, 42);
+	--text-accent: rgb(135, 135, 135);
+	--border: rgb(161, 161, 170, 0.2);
+	--radius: 1rem;
+}
+
+body {
+	background-color: var(--background);
+	color: var(--foreground);
+	border-radius: var(--radius) !important;
+	font-family: 'Satoshi', sans-serif;
+}
+
+.card {
+	position: relative;
+	border-radius: var(--radius);
+	break-inside: avoid;
+	padding: 1.5rem 1.5rem;
+
+	background-color: var(--card-bg);
+	box-shadow: inset 0 0 5px var(--border);
+	border: 1px solid var(--border);
+
+	transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+	background-color: var(--card-bg-hover);
+}
+
+.card:before {
+	content: ' ';
+	position: absolute;
+	z-index: -1;
+	top: 7px;
+	left: 7px;
+	right: 7px;
+	bottom: 7px;
+	border: 2px solid var(--border);
+	border-radius: calc(var(--radius) - 4px);
+}
+
+.link {
+	text-decoration: none;
+	color: inherit;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.icon {
+	width: 2rem;
+	aspect-ratio: 1/1;
+	background-color: white;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	transition: all 0.2s ease-in-out;
+	background-color: var(--background);
+}
+
+.icon:hover {
+	background-color: var(--text-dark-hover);
+}
+
+.icon svg {
+	color: var(--foreground);
+	width: 100%;
+	height: 100%;
+
+	transition: all 0.2s ease-in-out;
+}
+
+.icon:hover svg {
+	color: var(--foreground);
+}
+
+/* The following code is from https://stackoverflow.com/questions/43186015/css-hide-scroll-bar-but-have-element-scrollable 2023-11-05 */
+::-webkit-scrollbar {
+	width: 0px;
+
+	/* make scrollbar transparent */
+	background: transparent;
+}
+
+/* Project Details ===============================*/
+.backArrow {
+	position: fixed;
+	top: 2em;
+	left: 2em;
+	cursor: pointer;
+	border: unset;
+	z-index: 999;
+	background-color: unset;
+}
+
+.projectsDetailWrapper {
+	position: absolute;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	justify-content: space-around;
+	inset: 0;
+
+	height: 100vh !important;
+	overflow-y: scroll;
+
+	-webkit-mask-image: -webkit-gradient(
+		linear,
+		left 95%,
+		left bottom,
+		from(rgba(0, 0, 0, 1)),
+		to(rgba(0, 0, 0, 0))
+	);
+	mask-image: gradient(
+		linear,
+		left 95%,
+		left bottom,
+		from(rgba(0, 0, 0, 1)),
+		to(rgba(0, 0, 0, 0))
+	);
+}
+
+.projectsDetailWrapper .textBase,
+.projectsDetailWrapper .imagesBase {
+	padding: 1.5rem 0;
+	margin-inline: 1.5rem;
+}
+
+.projectsDetailWrapper .textBase p {
+	max-width: 45ch;
+}
+
+.links {
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
+.links a {
+	margin-top: 1rem;
+	color: var(--foreground);
+
+	font-weight: 800;
+	text-decoration: underline;
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0rem;
+}
+
+.projectsDetailWrapper .imagesBase {
+	display: grid;
+	height: max-content;
+	gap: 1em;
+	max-width: 50%;
+}
+
+.projectsDetailWrapper .imagesBase div,
+.projectsDetailWrapper .imagesBase img,
+.projectsDetailWrapper .imagesBase video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.imagesBase div,
+.imagesBase img,
+.imagesBase video {
+	border-radius: var(--radius);
+	box-shadow: var(--border) 0px 0px 0px 3px;
+	z-index: 5;
+}
+
+.projectsDetailWrapper .textBase {
+	height: 90vh;
+	display: grid;
+	place-items: center;
+	top: 0;
+	position: sticky;
+}
+
+.projectsDetailWrapper .textBase h1 {
+	font-size: 3rem;
+	-webkit-background-clip: text;
+	color: transparent;
+	font-weight: 600 !important;
+	background-clip: text;
+	background-image: linear-gradient(
+		90deg,
+		var(--text-accent),
+		var(--card-bg)
+	);
+}
+
+.badges {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+	padding-left: 0.25rem;
+}
+
+.badge {
+	position: relative;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	background-color: var(--card-bg);
+	border-radius: var(--radius);
+	display: inline-flex;
+	align-items: center;
+	font-weight: 600;
+	text-align: center;
+	outline: 2px solid var(--border);
+}
+
+.badge::before,
+.imagesBase div:nth-child(1)::before {
+	position: absolute;
+	z-index: -1;
+	inset: 0;
+	content: ' ';
+	border-radius: var(--radius);
+	background-size: 200% 100%;
+	background-image: linear-gradient(
+		110deg,
+		var(--background),
+		45%,
+		var(--border),
+		55%,
+		var(--background)
+	);
+	animation: background-shine 2s linear infinite;
+}
+
+.imagesBase div:nth-child(1) {
+	position: relative;
+}
+
+.imagesBase div:nth-child(1) img {
+	opacity: 0.85;
+}
+
+.project-description {
+	font-size: 1rem;
+	text-align: justify;
+	font-weight: 500;
+	background-color: var(--card-bg);
+	padding: 1rem;
+	border-radius: var(--radius);
+	outline: 2px solid var(--border);
+}
+
+/* Cursor Responsiveness */
+@media (max-width: 468px) {
+	* {
+		cursor: unset !important;
+	}
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+	.links {
+		display: unset;
+		gap: 0rem;
+	}
+
+	.links a {
+		margin-left: 0.5rem;
+		margin-top: 0.5rem;
+		cursor: pointer !important;
+	}
+
+	.projectsDetailWrapper {
+		flex-direction: column !important;
+		gap: 1rem;
+		justify-content: space-between;
+	}
+
+	.projectsDetailWrapper .textBase {
+		padding-top: 0rem;
+		height: max-content;
+		position: unset;
+	}
+
+	.projectsDetailWrapper .textBase,
+	.projectsDetailWrapper .imagesBase {
+		place-items: unset !important;
+		justify-content: unset !important;
+		height: max-content !important;
+		max-width: unset;
+		margin-inline: 0rem;
+	}
+
+	.projectsDetailWrapper .imagesBase {
+		padding-top: 0 !important;
+	}
+
+	.small-margin {
+		margin-inline: 2rem !important;
+		margin-block: 1rem !important;
+	}
+
+	.projectsDetailWrapper .header {
+		padding-block: 1rem;
+		/* padding-left: 1.5rem; */
+		position: sticky;
+		height: max-content;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-color: var(--background) !important;
+		z-index: 99999999;
+
+		-webkit-mask-image: -webkit-gradient(
+			linear,
+			left 90%,
+			left bottom,
+			from(rgba(0, 0, 0, 1)),
+			to(rgba(0, 0, 0, 0))
+		);
+		mask-image: gradient(
+			linear,
+			left 90%,
+			left bottom,
+			from(rgba(0, 0, 0, 1)),
+			to(rgba(0, 0, 0, 0))
+		);
+	}
+
+	.projectsDetailWrapper .header h1 {
+		position: relative;
+		display: flex;
+		gap: 0.5rem;
+		padding-inline: 1.5rem;
+		font-size: 2.5rem !important;
+		place-items: center;
+		line-height: 120%;
+	}
+
+	.projectsDetailWrapper .backArrow {
+		position: unset;
+	}
+
+	.projectsDetailWrapper .textBase .project-description {
+		max-width: 100% !important;
+	}
+
+	.projectsDetailWrapper .imagesBase {
+		background-color: var(--background);
+		border-radius: var(--radius);
+		padding-block: 2rem;
+		z-index: 50;
+	}
+
+	.badge {
+		font-size: 1rem;
+		padding: 0.5rem 0.75rem;
+	}
+
+	img,
+	video {
+		width: 100% !important;
+	}
+}
+
+@keyframes background-shine {
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: -200% 0;
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
