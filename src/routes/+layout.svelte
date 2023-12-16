@@ -5,6 +5,7 @@
 	import { base } from '$app/paths'
 	import { setupViewTransition } from 'sveltekit-view-transition'
 	import { onMount } from 'svelte'
+	import { goto } from '$app/navigation'
 
 	setupViewTransition()
 
@@ -80,22 +81,30 @@ https://github.com/huntabyte/mode-watcher-->
 				<li
 					class="navItem activeMenu"
 					class:activeMenu={$page.route.id === '/'}>
-					<a href={`${base}/`} class="link">Home</a>
+					<button on:click={() => goto(`${base}/`)} class="link">
+						Home
+					</button>
 				</li>
 				<li
 					class="navItem"
 					class:activeMenu={$page.route.id === '/projects'}>
-					<a href={`${base}/projects`} class="link">Projects</a>
+					<button
+						on:click={() => goto(`${base}/projects`)}
+						class="link">
+						Projects</button>
 				</li>
 				<li
 					class="navItem"
 					class:activeMenu={$page.route.id === '/brand'}>
-					<a href={`${base}/brand`} class="link">Branding</a>
+					<button on:click={() => goto(`${base}/brand`)} class="link"
+						>Branding</button>
 				</li>
 				<li
 					class="navItem"
 					class:activeMenu={$page.route.id === '/contact'}>
-					<a href={`${base}/contact`} class="link">Contact</a>
+					<button
+						on:click={() => goto(`${base}/contact`)}
+						class="link">Contact</button>
 				</li>
 			</ul>
 		</nav>
@@ -107,6 +116,16 @@ https://github.com/huntabyte/mode-watcher-->
 </div>
 
 <style>
+	/* Remove default styling for buttons */
+	button {
+		background: none;
+		border: none;
+		padding: 0;
+		font: inherit;
+		cursor: pointer;
+		outline: inherit;
+	}
+
 	/* CURSOR */
 	@media (min-width: 1024px) {
 		:global(.cursor-outline-hover) {
