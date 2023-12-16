@@ -1,4 +1,4 @@
-import{i as g}from"./scheduler.J9bTUkkY.js";import{d as p,w as f}from"./paths.ZPt0VKws.js";let l,m;function w(t){if(typeof document>"u")return;clearTimeout(l),clearTimeout(m);const e=document.createElement("style"),s=document.createTextNode(`* {
+import{i as g}from"./scheduler.J9bTUkkY.js";import{d as p,w as f}from"./paths.ExC7329a.js";let l,m;function w(t){if(typeof document>"u")return;clearTimeout(l),clearTimeout(m);const e=document.createElement("style"),s=document.createTextNode(`* {
      -webkit-transition: none !important;
      -moz-transition: none !important;
      -o-transition: none !important;
