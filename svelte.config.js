@@ -7,9 +7,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: process.argv.includes('dev')
-				? ''
-				: '/wuid-portfolio-enisbudancamanak',
+			base: process.argv.includes('dev') ? '' : '/portfolio-modernized',
 		},
 	},
 }
